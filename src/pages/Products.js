@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 import axios from 'axios';
 import { Plus, Edit, Trash2, X, Save } from 'lucide-react';
 import './Products.css';
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
