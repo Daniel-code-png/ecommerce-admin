@@ -23,7 +23,7 @@ const Login = () => {
       
       // Redirigir según el tipo de usuario
       if (user.isAdmin) {
-        window.location.href = 'http://localhost:3001'; // Admin panel
+        window.location.href = process.env.REACT_APP_ADMIN_URL || 'http://localhost:3001'; // Admin panel
       } else {
         navigate('/');
       }
