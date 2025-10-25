@@ -25,7 +25,7 @@ const Login = () => {
       if (user.isAdmin) {
         window.location.href = process.env.REACT_APP_ADMIN_URL; 
       } else {
-        navigate('/');
+        
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Error al iniciar sesión');
