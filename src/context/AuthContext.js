@@ -37,11 +37,12 @@ export const AuthProvider = ({ children }) => {
           setUser(response.data.user);
         } else {
           localStorage.removeItem('token');
-          // Redirigir a la tienda si no es admin
+          setUser(null);
           window.location.href = process.env.REACT_APP_STORE_URL;
         }
       } catch (error) {
         localStorage.removeItem('token');
+        setUser(null)
       }
     }
     
