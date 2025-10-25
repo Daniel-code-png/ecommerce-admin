@@ -5,7 +5,7 @@ import { DollarSign, ShoppingCart, Users, Package, TrendingUp } from 'lucide-rea
 import './Dashboard.css';
 
 // IMPORTANTE: Agregar esta línea
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);

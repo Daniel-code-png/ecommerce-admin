@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 // IMPORTANTE: Agregar esta línea
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const AuthContext = createContext();
 
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
         } else {
           localStorage.removeItem('token');
           // Redirigir a la tienda si no es admin
-          window.location.href = process.env.REACT_APP_STORE_URL || 'http://localhost:3000';
+          window.location.href = process.env.REACT_APP_STORE_URL;
         }
       } catch (error) {
         localStorage.removeItem('token');
