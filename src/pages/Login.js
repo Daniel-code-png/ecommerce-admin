@@ -23,7 +23,16 @@ const Login = () => {
       
       // Redirigir según el tipo de usuario
       if (user.isAdmin) {
-        window.location.href = process.env.REACT_APP_ADMIN_URL; 
+        // IMPORTANTE: Fallback a localhost O validar que existe
+        const adminUrl = process.env.REACT_APP_ADMIN_URL || 'http://localhost:3001';
+        
+        // Validar que NO sea undefined
+        if (adminUrl && adminUrl !== 'undefined') {
+          window.location.href = adminUrl;
+        } else {
+          // Si la variable no existe, mostrar error
+          setError('No se pudo encontrar el panel de administración. Contacta al soporte.');
+        }
       } else {
         navigate('/');
       }
@@ -84,7 +93,7 @@ const Login = () => {
 
         <div className="login-footer">
           <p>
-            Tiene un pequeño bug cuando inicia sesión te  redirecciona solo es devolverse
+            ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
           </p>
         </div>
       </div>
