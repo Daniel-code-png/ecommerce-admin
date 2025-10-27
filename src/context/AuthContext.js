@@ -1,8 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-// IMPORTANTE: Agregar esta línea
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const AuthContext = createContext();
 
@@ -27,7 +26,6 @@ export const AuthProvider = ({ children }) => {
     
     if (token) {
       try {
-        // CAMBIO: Usar API_URL
         const response = await axios.get(`${API_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -36,13 +34,14 @@ export const AuthProvider = ({ children }) => {
         if (response.data.user.isAdmin) {
           setUser(response.data.user);
         } else {
+          // Si NO es admin, solo limpiar - NO redirigir
           localStorage.removeItem('token');
           setUser(null);
-          window.location.href = process.env.REACT_APP_STORE_URL;
         }
       } catch (error) {
+        // Si hay error, limpiar token
         localStorage.removeItem('token');
-        setUser(null)
+        setUser(null);
       }
     }
     
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    // CAMBIO: Usar API_URL
     const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
     
     // Verificar que sea admin
