@@ -84,7 +84,7 @@ const Login = () => {
 
         <div className="login-footer">
           <p>
-            
+            Tiene un pequeño bug cuando inicia sesión te  redirecciona solo es devolverse
           </p>
         </div>
       </div>
